@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { Header, Icon, Button, ListItem } from "react-native-elements";
 
 import { styles } from "./styles";
@@ -23,12 +23,15 @@ export function ListaContatos({navigation}) {
   return (
     <View style={styles.container}>
       <Header
-        centerComponent={{ text: "MY TITLE", style: { color: "#fff" } }}
+        centerComponent={{ text: "Lista de Contatos", style: { color: "#fff", fontSize: 24 } }}
         rightComponent={
           <Button icon={<Icon name="add" size={20} color="white" 
           onPress={()=>navigation.navigate('CadastroContato')}/>} />
         }
       />
+      <TouchableOpacity>
+        
+      </TouchableOpacity>
 
       <View>
         {list.map((l, i) => (

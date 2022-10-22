@@ -6,12 +6,20 @@ import { CadastroUsuarios } from './src/screens/CadastroUsuarios';
 import { ListaContatos } from './src/screens/ListaContatos';
 import { CadastroContato } from './src/screens/CadastroContato';
 import { AlteracaoContato } from './src/screens/AlteracaoContato';
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
   
   const Stack = createNativeStackNavigator();
   return (
+
     <NavigationContainer >
+      
+      <StatusBar
+        backgroundColor="transparent"
+        translucent
+      />
+
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Login" component={Login}/>
         <Stack.Screen name="CadastroUsuarios" component={CadastroUsuarios}/>
