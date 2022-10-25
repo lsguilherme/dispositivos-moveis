@@ -1,24 +1,18 @@
 import React from "react";
-import { TouchableOpacity, View } from "react-native";
-import { Header, Icon, Button, ListItem } from "react-native-elements";
+import { TouchableOpacity, View, Text,  } from "react-native";
+import { Header, Icon, Button, Card, Image,  } from "react-native-elements";
 
 import { styles } from "./styles";
 
+const users = [
+  {
+     nome: 'brynn',
+     numero: '9999',
+     avatar: 'https://www.blexar.com/avatar.png'
+  }
+]
 
 export function ListaContatos({navigation}) {
-  
-  const list = [
-    {
-      nome: 'Amy Farha',
-      numero: 'Vice President',
-      avatar_url: "https://www.blexar.com/avatar.png",
-    },
-    {
-      nome: 'Chris Jackson',
-      numero: 'Vice Chairman',
-      avatar_url: "https://www.blexar.com/avatar.png",
-    },
-  ]
 
   return (
     <View style={styles.container}>
@@ -29,22 +23,29 @@ export function ListaContatos({navigation}) {
           onPress={()=>navigation.navigate('CadastroContato')}/>} />
         }
       />
-      <TouchableOpacity>
-        
-      </TouchableOpacity>
 
-      <View>
-        {list.map((l, i) => (
-          <ListItem
-            key={i}
-            leftAvatar={{ source: { uri: l.avatar_url } }}
-            title={l.nome}
-            subtitle={l.numero}
-            bottomDivider
-          />
-        ))
+    <View style={styles.item}>
+      <Text>Marco Andrade</Text>
+    </View>
+    <TouchableOpacity>
+      <Card>
+        {
+          users.map((u, i) => {
+            return (
+              <View key={i} >
+                <Image
+                  resizeMode="cover"
+                  source={{ uri: "https://www.blexar.com/avatar.png" }}
+                />
+                <Text>{u.nome}</Text>
+                <Text>{u.numero}</Text>
+              </View>
+            );
+          })
         }
-      </View>
+      </Card>
+    </TouchableOpacity>
+      
     </View>
   );
 }
