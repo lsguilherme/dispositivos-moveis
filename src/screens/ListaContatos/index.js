@@ -1,21 +1,44 @@
-import React from "react";
-import { TouchableOpacity, View, Text,  } from "react-native";
-import { Header, Icon, Button, Card, Image,  } from "react-native-elements";
+import React, { useEffect, useState } from "react";
+import { View, FlatList } from "react-native";
+import { Header, Icon, Button, ListItem, Avatar,  } from "react-native-elements";
+
+import axios from "axios";
 
 import { styles } from "./styles";
 
-const users = [
-  {
-     nome: 'brynn',
-     numero: '9999',
-     avatar: 'https://www.blexar.com/avatar.png'
-  }
-]
 
 export function ListaContatos({navigation}) {
+  const [getData, setData] = useState([]);
+
+  useEffect(() => {
+
+    async function resgatarDados(){
+      const result = await axios(
+        'http://professornilson.com/testeservico/clientes',
+      )
+      setData(result.data);
+    }
+    resgatarDados();
+  }, [])
+
+  console.log(getData);
+
+  const getUser = ({ item: user }) => (
+    <ListItem 
+      bottomDivider
+      onPress={()=>navigation.navigate('AlteracaoContato', user )}
+    >
+      <Avatar source={{uri:"https://www.blexar.com/avatar.png"}}/>
+      <ListItem.Content>
+        <ListItem.Title>{user.nome}</ListItem.Title>
+        <ListItem.Subtitle>{user.telefone}</ListItem.Subtitle>
+      </ListItem.Content>
+    </ListItem>
+  );
 
   return (
-    <View style={styles.container}>
+
+     <View>
       <Header
         centerComponent={{ text: "Lista de Contatos", style: { color: "#fff", fontSize: 24 } }}
         rightComponent={
@@ -23,28 +46,11 @@ export function ListaContatos({navigation}) {
           onPress={()=>navigation.navigate('CadastroContato')}/>} />
         }
       />
-
-    <View style={styles.item}>
-      <Text>Marco Andrade</Text>
-    </View>
-    <TouchableOpacity>
-      <Card>
-        {
-          users.map((u, i) => {
-            return (
-              <View key={i} >
-                <Image
-                  resizeMode="cover"
-                  source={{ uri: "https://www.blexar.com/avatar.png" }}
-                />
-                <Text>{u.nome}</Text>
-                <Text>{u.numero}</Text>
-              </View>
-            );
-          })
-        }
-      </Card>
-    </TouchableOpacity>
+      <FlatList
+        keyExtractor={(user) => user.id.toString()}
+        data={getData}
+        renderItem={getUser}
+      />
       
     </View>
   );
