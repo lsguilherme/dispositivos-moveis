@@ -7,11 +7,12 @@ import axios from "axios";
 import { styles } from "./styles";
 
 
-export function ListaContatos({navigation}) {
+export function ListaContatos({route, navigation}) {
   const [getData, setData] = useState([]);
+  const [load, setload] = useState(true);
 
   useEffect(() => {
-
+    
     async function resgatarDados(){
       const result = await axios(
         'http://professornilson.com/testeservico/clientes',
@@ -19,14 +20,12 @@ export function ListaContatos({navigation}) {
       setData(result.data);
     }
     resgatarDados();
-  }, [])
-
-  console.log(getData);
+  }, [load])
 
   const getUser = ({ item: user }) => (
     <ListItem 
       bottomDivider
-      onPress={()=>navigation.navigate('AlteracaoContato', user )}
+      onPress={()=>navigation.navigate('CadastroContato', {nome: user.nome, telefone: user.telefone, cpf: user.cpf, id: user.id, alterar:true})}
     >
       <Avatar source={{uri:"https://www.blexar.com/avatar.png"}}/>
       <ListItem.Content>
