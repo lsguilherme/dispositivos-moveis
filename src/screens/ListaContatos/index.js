@@ -25,7 +25,7 @@ export function ListaContatos({route, navigation}) {
   const getUser = ({ item: user }) => (
     <ListItem 
       bottomDivider
-      onPress={()=>navigation.navigate('CadastroContato', {nome: user.nome, telefone: user.telefone, cpf: user.cpf, id: user.id, alterar:true})}
+      onPress={()=>navigation.navigate('CadastroContato', {nome: user.nome, telefone: user.telefone, email: user.email, cpf: user.cpf, id: user.id, alterar:true})}
     >
       <Avatar source={{uri:"https://www.blexar.com/avatar.png"}}/>
       <ListItem.Content>

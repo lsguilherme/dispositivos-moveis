@@ -43,34 +43,27 @@ export function CadastroContato({ route, navigation }) {
         setNome('');
         setEmail('');
         setTelefone('');
-        alert("FOI!");
-        console.log(response);
       })
-      .catch((error) => alert("DEU ERRO!"));
+      .catch((error) => console.log(error));
   }
 
   async function alterarDados() {
     await axios
-      .put("http://professornilson.com/testeservico/clientes" + getId, {
+      .put("http://professornilson.com/testeservico/clientes/" + getId, {
         nome: getNome,
         email: getEmail,
         telefone: getTelefone,
       })
-      .then((response) => {
-        alert("FOOOOOI!");
-      })
-      .catch((error) => alert("ERRO!"));
-  }
+      }
 
   function excluirDados(){
-    axios.delete("http://professornilson.com/testeservico/clientes" + getId)
+    axios.delete("http://professornilson.com/testeservico/clientes/" + getId)
     .then(function(response){
       setNome('')
       setEmail('')
       setTelefone('')
-      alert("E FOI!")
     })
-    .catch((error)=>alert("NÃO FOI!"))
+    .catch((error) => console.log(error))
   }
 
 
@@ -142,7 +135,8 @@ export function CadastroContato({ route, navigation }) {
           buttonStyle={{ width: 290, marginTop: 10, backgroundColor: 'red' }}
           onPress={() => excluirDados()}
         />
-        ) : (null
+        ) : (
+          null
         )}
       </View>
     </ScrollView>
