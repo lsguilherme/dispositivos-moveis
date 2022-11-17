@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ScrollView, View } from 'react-native';
-import { Button, Header, Icon } from 'react-native-elements';
+import { ScrollView, TouchableOpacity, View, Image } from 'react-native';
+import { Button, Header,  } from 'react-native-elements';
 import { Input } from 'react-native-elements/dist/input/Input';
 
 import { styles } from './styles';
@@ -33,8 +33,14 @@ export function CadastroUsuarios({navigation}) {
         <Header
           centerComponent={{ text: "Usuário", style: { color: "#fff", fontSize:24 }}}
           leftComponent={
-            <Button icon={<Icon name="home" size={20} color="white" 
-            onPress={()=>navigation.navigate('Login')}/>} />
+            <Button icon={<TouchableOpacity
+              onPress={() => navigation.navigate("Login")}>
+              <Image
+                source={require('../../assets/iconBack.png')}
+                tintColor="white"
+                
+              />
+          </TouchableOpacity>} />
           }
         />
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, View, TextInput } from "react-native";
-import { Button, Header, Icon, Input } from "react-native-elements";
+import { ScrollView, View, Image, TouchableOpacity } from "react-native";
+import { Button, Header, Input } from "react-native-elements";
 
 import axios from "axios";
 
@@ -43,6 +43,7 @@ export function CadastroContato({ route, navigation }) {
         setNome('');
         setEmail('');
         setTelefone('');
+        alert('Adicionado com sucesso!')
       })
       .catch((error) => console.log(error));
   }
@@ -53,6 +54,8 @@ export function CadastroContato({ route, navigation }) {
         nome: getNome,
         email: getEmail,
         telefone: getTelefone,
+      }).then(function(){
+        alert('Alterado com sucesso!')
       })
       }
 
@@ -62,6 +65,7 @@ export function CadastroContato({ route, navigation }) {
       setNome('')
       setEmail('')
       setTelefone('')
+      alert('Excluido com sucesso!')
     })
     .catch((error) => console.log(error))
   }
@@ -77,17 +81,15 @@ export function CadastroContato({ route, navigation }) {
             style: { color: "#fff", fontSize: 24 },
           }}
           leftComponent={
-            <Button
-              icon={
-                <Icon
-                  name="home"
-                  size={20}
-                  color="white"
-                  onPress={() => navigation.navigate("ListaContatos")}
-                />
-              }
-            />
-          }
+              <TouchableOpacity
+              onPress={() => navigation.navigate("ListaContatos")}>
+              <Image
+                source={require('../../assets/iconBack.png')}
+                tintColor="white"
+                
+              />
+          </TouchableOpacity>
+            }
         />
 
         <View style={{ marginTop: 50 }}>

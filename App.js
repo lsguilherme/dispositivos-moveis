@@ -12,7 +12,7 @@ export default function App() {
   const Stack = createNativeStackNavigator();
   return (
 
-    <NavigationContainer >
+    <NavigationContainer>
       
       <StatusBar
         backgroundColor="transparent"

@@ -25,7 +25,7 @@ export function Login({ navigation }) {
     console.log('Entrar na conta', getEmail)
     navigation.navigate('ListaContatos')
     })
-    .catch(error => console.log(error))
+    .catch(error => alert('Usuário não encontrado!'))
   }
   return (
 
